@@ -39,3 +39,27 @@ form td:last-child {
 form * {
   font-size: 28px;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.pagination li {
+  list-style-type: none;
+}
+
+.pagination button {
+  padding: 6px 10px;
+  font-size: 16px;
+  background-color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #1171d1;
+  color: #ffffff;
+}
+

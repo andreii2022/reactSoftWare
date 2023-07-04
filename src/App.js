@@ -20,6 +20,7 @@ const [contacts, setContact] = useState(data)
         <th>Year</th>
         <th>Price</th>
         <th>Availability</th>
+        <th>Actions</th>
         
       </tr>
     </thead>
@@ -33,7 +34,14 @@ const [contacts, setContact] = useState(data)
         <td>{contact.car_model_year}</td>
         <td>{contact.price}</td>
         <td>{contact.availability}</td>
-       
+        <td>
+        <select>
+                  <option value="">Выберите действие</option>
+                  <option value="edit">Редактировать</option>
+                  <option value="delete">Удалить</option>
+                  {/* Добавьте дополнительные опции здесь */}
+                </select>
+        </td>
       </tr>
       ))}
       

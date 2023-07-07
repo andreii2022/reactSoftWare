@@ -104,6 +104,32 @@ const handleAdd = (newCar) => {
 
   const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar);
 
+  // useEffect(() => {
+  //   const saveDataToLocalStorage = (data) => {
+  //     localStorage.setItem('carsData', JSON.stringify(data));
+  //   };
+  
+  //   const fetchDataFromLocalStorage = () => {
+  //     const storedData = localStorage.getItem('carsData');
+  //     if (storedData) {
+  //       setCars(JSON.parse(storedData));
+  //     }
+  //   };
+  
+  //   fetchDataFromLocalStorage();
+  
+  //   window.addEventListener('beforeunload', () => {
+  //     saveDataToLocalStorage(cars);
+  //   });
+  
+  //   return () => {
+  //     window.removeEventListener('beforeunload', () => {
+  //       saveDataToLocalStorage(cars);
+  //     });
+  //   };
+  // }, [cars]);
+  
+
   return (
     <div className="app-container">
       

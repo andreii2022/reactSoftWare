@@ -8,7 +8,7 @@ function ModalDelete({ car, onClose, onDelete }) {
   };
 
   return (
-    <div className="modal">
+    <div className="modal modal-delete">
       <div className="modal-content">
         <h2>Удалить автомобиль</h2>
         <p>Вы уверены, что хотите удалить этот автомобиль?</p>

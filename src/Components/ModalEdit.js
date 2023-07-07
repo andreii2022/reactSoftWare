@@ -234,40 +234,40 @@ const ModalEdit = ({ car, onClose, onEdit }) => {
       <div className="modal-content">
         <h2>Редактировать автомобиль</h2>
         <form onSubmit={handleSubmit}>
-          <label>
-            Компания:
+				<div className="form-group">
+            <label htmlFor="company">Компания:</label>
             <input
               type="text"
               value={editedCarData.car || ''}
               readOnly
             />
-          </label>
-          <label>
-            Модель:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">Модель:</label>
             <input
               type="text"
               value={editedCarData.car_model || ''}
               readOnly
             />
-          </label>
-          <label>
-            VIN:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">VIN:</label>
             <input
               type="text"
               value={editedCarData.car_vin || ''}
               readOnly
             />
-          </label>
-          <label>
-            Год:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">Год:</label>
             <input
               type="text"
               value={editedCarData.car_model_year || ''}
               readOnly
             />
-          </label>
-          <label>
-            Цвет:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">Цвет:</label>
             <input
               type="text"
               value={editedCarData.car_color || ''}
@@ -275,9 +275,9 @@ const ModalEdit = ({ car, onClose, onEdit }) => {
                 setEditedCarData({ ...editedCarData, car_color: e.target.value })
               }
             />
-          </label>
-          <label>
-            Цена:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">Цена:</label>
             <input
               type="text"
               value={editedCarData.price}
@@ -285,9 +285,9 @@ const ModalEdit = ({ car, onClose, onEdit }) => {
                 setEditedCarData({ ...editedCarData, price: e.target.value })
               }
             />
-          </label>
-          <label>
-            Наличие:
+          </div>
+					<div className="form-group">
+            <label htmlFor="company">Наличие:</label>
             <select
               value={editedCarData.availability}
               onChange={(e) =>
@@ -300,8 +300,8 @@ const ModalEdit = ({ car, onClose, onEdit }) => {
               <option value={true}>Да</option>
               <option value={false}>Нет</option>
             </select>
-          </label>
-          <div className="modal-buttons">
+          </div>
+          <div className="modal-actions">
             <button type="submit">Сохранить</button>
             <button onClick={onClose}>Закрыть</button>
           </div>

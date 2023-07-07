@@ -23,7 +23,8 @@ function App() {
       try {
         const response = await fetch('https://myfakeapi.com/api/cars/');
         const data = await response.json();
-        setCars(data.cars);
+
+				setCars(data.cars)
         
         setTotalPages(Math.ceil(data.cars.length / carsPerPage));
       } catch (error) {
@@ -83,12 +84,15 @@ function App() {
   };
 
 const handleAdd = (newCar) => {
+	
   const newCarData = {
     id: Date.now(),
     ...newCar,
   };
 
-  setCars((prevCars) => [...prevCars, newCarData]); // Обновление списка автомобилей
+
+
+	setCars((prevCars) => [newCarData, ...prevCars]); // Обновление списка автомобилей
   handleAddModalClose();
 };
 
@@ -103,89 +107,65 @@ const handleAdd = (newCar) => {
   );
 
   const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar);
-
-  // useEffect(() => {
-  //   const saveDataToLocalStorage = (data) => {
-  //     localStorage.setItem('carsData', JSON.stringify(data));
-  //   };
-  
-  //   const fetchDataFromLocalStorage = () => {
-  //     const storedData = localStorage.getItem('carsData');
-  //     if (storedData) {
-  //       setCars(JSON.parse(storedData));
-  //     }
-  //   };
-  
-  //   fetchDataFromLocalStorage();
-  
-  //   window.addEventListener('beforeunload', () => {
-  //     saveDataToLocalStorage(cars);
-  //   });
-  
-  //   return () => {
-  //     window.removeEventListener('beforeunload', () => {
-  //       saveDataToLocalStorage(cars);
-  //     });
-  //   };
-  // }, [cars]);
   
 
   return (
     <div className="app-container">
-      
-      <Search onSearch={handleSearch} />
+			<h1 className='app-title'>TEst tasK</h1>
+			<div className="app-header">
+			<button className="add-car-button" onClick={handleAddModalOpen}></button>
+			<Search onSearch={handleSearch} />
+		</div>
 
-      
-      <button className="add-car-button" onClick={handleAddModalOpen}>
-        Добавить автомобиль
-      </button>
-
-      
-      <table className="car-table">
+      <div className="table-container">
+			<table className="car-table">
         <thead>
           <tr>
-          <th>Company</th>
-            <th>Model</th>
-            <th>VIN</th>
-            <th>Color</th>
-            <th>Year</th>
-            <th>Price</th>
-            <th>Availability</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-        {currentCars.map((car) => (
-          <tr key={car.id}>
-            <td>{car.car || car.company}</td>
-            <td>{car.car_model || car.model}</td>
-            <td>{car.car_vin || car.vin}</td>
-            <td>{car.car_color || car.color}</td>
-            <td>{car.car_model_year || car.year}</td>
-            <td>{car.price}</td>
-            <td>{car.availability ? 'Yes' : 'No'}</td>
-            <td>
-              <select
-                className="action-select"
-                onChange={(e) => {
-                  const action = e.target.value;
-                  if (action === 'edit') {
-                    handleEditModalOpen(car);
-                  } else if (action === 'delete') {
-                    handleDeleteModalOpen(car);
-                  }
-                  }}
-                >
-              <option value="">Выберите действие</option>
-              <option value="edit">Редактировать</option>
-              <option value="delete">Удалить</option>
-            </select>
-              </td>
-              </tr>
-                ))}
- 
-        </tbody>
+						<th>Company</th>
+							<th>Model</th>
+							<th>VIN</th>
+							<th>Color</th>
+							<th>Year</th>
+							<th>Price</th>
+							<th>Availability</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					{currentCars.map((car) => (
+						<tr key={car.id}>
+							<td>{car.car || car.company}</td>
+							<td>{car.car_model || car.model}</td>
+							<td>{car.car_vin || car.vin}</td>
+							<td>{car.car_color || car.color}</td>
+							<td>{car.car_model_year || car.year}</td>
+							<td>{car.price}</td>
+							<td>{car.availability ? 'Yes' : 'No'}</td>
+							<td>
+								<select
+									className="action-select"
+									onChange={(e) => {
+										const action = e.target.value;
+										if (action === 'edit') {
+											handleEditModalOpen(car);
+											e.target.value = ''
+										} else if (action === 'delete') {
+											handleDeleteModalOpen(car);
+											e.target.value = ''
+										}
+										}}
+									>
+								<option value="">Выберите действие</option>
+								<option value="edit">Редактировать</option>
+								<option value="delete">Удалить</option>
+							</select>
+								</td>
+								</tr>
+									))}
+	
+					</tbody>
         </table>
+			</div>
         
       <Pagination
         currentPage={currentPage}

@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Pagination from './Components/Pagination';
@@ -23,18 +24,32 @@ function App() {
       try {
         const response = await fetch('https://myfakeapi.com/api/cars/');
         const data = await response.json();
-
-				setCars(data.cars)
-        
+  
+        setCars(data.cars);
         setTotalPages(Math.ceil(data.cars.length / carsPerPage));
+  
+        localStorage.setItem('cars', JSON.stringify(data.cars)); // Сохраняем данные в локальное хранилище
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
     };
-
-    fetchCars();
+  
+    const storedCars = localStorage.getItem('cars');
+    if (!storedCars || storedCars.length === 0) {
+      fetchCars();
+    } else {
+      setCars(JSON.parse(storedCars));
+      setTotalPages(Math.ceil(JSON.parse(storedCars).length / carsPerPage));
+    }
   }, []);
   
+  useEffect(() => {
+    setTimeout(() => {
+      const carsString = JSON.stringify(cars);
+      localStorage.setItem('cars', carsString);
+      setTotalPages(Math.ceil(cars.length / carsPerPage));
+    }, 500)
+  }, [cars]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -92,7 +107,7 @@ const handleAdd = (newCar) => {
 
 
 
-	setCars((prevCars) => [newCarData, ...prevCars]); // Обновление списка автомобилей
+	setCars((prevCars) => [newCarData, ...prevCars]);
   handleAddModalClose();
 };
 
@@ -190,6 +205,15 @@ const handleAdd = (newCar) => {
 }
 
 export default App;
+
+
+
+  
+
+
+
+
+
 
 
 
